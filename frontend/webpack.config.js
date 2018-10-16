@@ -9,7 +9,7 @@ module.exports = {
     },
     devServer: {
         port: 8080,
-        contentBase: '/public',
+        contentBase: './public',
     },
     resolve: {
         extensions: ['', '.js', '.jsx'],
@@ -40,7 +40,7 @@ module.exports = {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }, {
-            text: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
+            test: /\.woff|.woff2|.ttf|.eot|.svg|.png|.jpg*.*$/,
             loader: 'file'
         }]
     }
