@@ -7,16 +7,17 @@ export function login(values) {
 }
 
 export function signup(values) {
-    return submit(values, `${consts.API_URL}/signup`)
+    return submit(values, `${consts.OAPI_URL}/signup`)
 }
 
 function submit(values, url) {
     return dispatch => {
         axios.post(url, values)
             .then(resp => {
-                dispatch([
-                    { type: 'USER_FETCHED', payload: resp.data }
-                ])
+                dispatch([{
+                    type: 'USER_FETCHED',
+                    payload: resp.data
+                }])
             })
             .catch(e => {
                 e.response.data.errors.forEach(
@@ -32,7 +33,9 @@ export function logout() {
 export function validateToken(token) {
     return dispatch => {
         if (token) {
-            axios.post(`${consts.OAPI_URL}/validateToken`, { token })
+            axios.post(`${consts.OAPI_URL}/validateToken`, {
+                    token
+                })
                 .then(resp => {
                     dispatch({ type: 'TOKEN_VALIDATED', payload: resp.data.valid })
                 })
